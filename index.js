@@ -4,7 +4,7 @@ const app = express();
 const cors = require("cors")
 
 
-app.use(cors())
+app.use(cors({origin:"https://600b9441bc194ebe68ad7d4b--gallant-newton-79577f.netlify.app"}))
 app.use(express.json({limit:'50mb'}))
 app.use(express.urlencoded({limit:'50mb',extended:true}))
 
