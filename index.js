@@ -9,6 +9,11 @@ app.use(express.json({limit:'50mb'}))
 app.use(express.urlencoded({limit:'50mb',extended:true}))
 
 
+app.get("/",(req,res)=>{
+  res.json({page:"principal"})
+})
+
+
 app.post("/send",(req,res)=>{
     const {message,email,subject} = req.body
 
