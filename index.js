@@ -39,7 +39,7 @@ app.post("/send",(req,res)=>{
       transporter.sendMail(TransporterOptions,(error,info)=>{
             if(error){
                 console.log("hubo un error")
-                res.status(500).send(error.message)
+                res.send(error)
             }else{
                 console.log("Enviado correctamente")
                 res.send("Enviado correctamente")
