@@ -5,8 +5,8 @@ const cors = require("cors")
 
 
 app.use(cors())
-app.use(express.json({limit:'50mb'}))
-app.use(express.urlencoded({limit:'50mb',extended:true}))
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
 
 
 app.get("/send",(req,res)=>{
@@ -15,7 +15,14 @@ app.get("/send",(req,res)=>{
 
 
 app.post("/send",(req,res)=>{
-    const {message,email,subject} = req.body
+    const {name,email,subject,message} = req.body
+
+    const MessageResived = `<p>
+                               Name:${name}
+                               Email:${email}                          
+                               Subject:${subject}                          
+                               Message:${message}   
+                            <p>`
 
 
     let transporter = nodemailer.createTransport({
@@ -29,10 +36,10 @@ app.post("/send",(req,res)=>{
       })
 
     let TransporterOptions = {
-        from: `"App React 👻" <foo@example.com>`, // sender address
-        to: email, // list of receivers
-        subject: subject, // Subject line
-        html: message, // html body
+        from: `"My portfolio 👻" <foo@example.com>`,
+        to: "cristhopherdan@gmail.com",
+        subject: subject,
+        html:MessageResived, 
       }
 
     
@@ -42,7 +49,7 @@ app.post("/send",(req,res)=>{
                 res.send(error)
             }else{
                 console.log("Enviado correctamente")
-                res.send("Enviado correctamente")
+                res.redirect("http://localhost:5500/")
             }
       });
 })
